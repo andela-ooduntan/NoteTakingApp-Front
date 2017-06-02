@@ -1,0 +1,53 @@
+<div class="navbar navbar-toggleable-md navbar-light bg-faded">
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <a class="navbar-brand" href="#">NoteApp</a>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <!--<li class="nav-item active">-->
+                <!--<a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>-->
+            <!--</li>-->
+            <!--<li class="nav-item">-->
+                <!--<a class="nav-link" href="#">Link</a>-->
+            <!--</li>-->
+            <!--<li class="nav-item">-->
+                <!--<a class="nav-link disabled" href="#">Disabled</a>-->
+            <!--</li>-->
+        </ul>
+        <form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="text" placeholder="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+    </div>
+</div>
+<div class="container">
+    <div>
+
+        <h2>Create New Note</h2>
+        <div *ngIf="statusMessage.length" class="alert {{responseStatus}}" role="alert">
+            {{statusMessage}}
+        </div>
+        <form [formGroup]="noteForm" (ngSubmit)="createNote(noteForm)">
+            <div class="form-group">
+                <label for="formGroupExampleInput">Title</label>
+                <input formControlName="title" type="text" class="form-control" id="formGroupExampleInput" placeholder="Note title">
+            </div>
+            <div class="form-group">
+                <!--<label for="formGroupExampleInput2">Another label</label>-->
+                <label for="exampleTextarea">Note</label>
+                <textarea formControlName="content" class="form-control" id="exampleTextarea" rows="3"></textarea>
+            </div>
+            <div class="form-group">
+
+                <select class="form-control" formControlName="tagId" id="exampleSelect1">
+                    <option *ngFor="let tag of tagList.result; let i = index;" value="{{tag._id}}">{{tag.tagName}}</option>
+                </select>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Create Note</button>
+        </form>
+    </div>
+
+</div>

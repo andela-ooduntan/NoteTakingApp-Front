@@ -1,4 +1,5 @@
-import {Component, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 import {ApiServiceService} from './service/api-service.service';
 
@@ -8,7 +9,7 @@ import {ApiServiceService} from './service/api-service.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit{
-  constructor(private api: ApiServiceService) {}
+  constructor(public router: Router) {}
 
   ngOnInit() {
   }
