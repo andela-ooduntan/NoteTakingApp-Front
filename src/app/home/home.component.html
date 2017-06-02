@@ -1,0 +1,50 @@
+<div class="navbar navbar-toggleable-md navbar-light bg-faded">
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <a class="navbar-brand" href="#">NoteApp</a>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <!--<li class="nav-item active">-->
+                <!--<a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>-->
+            <!--</li>-->
+            <!--<li class="nav-item">-->
+                <!--<a class="nav-link" href="#">Link</a>-->
+            <!--</li>-->
+            <!--<li class="nav-item">-->
+                <!--<a class="nav-link disabled" href="#">Disabled</a>-->
+            <!--</li>-->
+        </ul>
+        <form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="text" placeholder="Search" [(ngModel)]="keyword" name="keyword">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit" (click)="searchNote()">Search</button>
+        </form>
+    </div>
+</div>
+<div class="container">
+    <div>
+
+        <h2>List of Note</h2>
+        <div class="list-container">
+            <div class="loader" *ngIf="loadingNote"> </div>
+        </div>
+
+        <div *ngIf="!loadingNote" class="row">
+            <div *ngIf="!noteList.result.length">No note yet <a [routerLink]="'/createNote'">Create new note</a></div>
+            <div *ngFor="let notes of noteList.result; let i = index;" class="col-sm-6">
+                <div class="card">
+                    <div class="card-block">
+                        <h3 class="card-title">{{notes.title}}</h3>
+                        <p class="card-text">{{notes.content}}</p>
+                        <p href="#" class="btn btn-primary">{{notes.tagId[0].tagName}}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row newNote">
+                <a routerLink="/createNote">Add new Note</a>
+            </div>
+        </div>
+    </div>
+
+</div>
